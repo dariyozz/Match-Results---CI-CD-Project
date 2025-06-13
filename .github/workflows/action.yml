@@ -21,13 +21,17 @@ jobs:
 
       - name: Build and push backend image
         run: |
+          cd ./backend
           docker build -t ${{ env.BACKEND_IMAGE }} .
           docker push ${{ env.BACKEND_IMAGE }}
+          cd ..
 
       - name: Build and push frontend image
         run: |
+          cd ./frontend
           docker build -t ${{ env.FRONTEND_IMAGE }} .
           docker push ${{ env.FRONTEND_IMAGE }}
+          cd ..
 
       - name: Log out of Docker Hub
         run: docker logout
