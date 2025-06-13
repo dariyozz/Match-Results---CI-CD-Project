@@ -2,7 +2,7 @@ name: Deploy Fullstack App
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 env:
   BACKEND_IMAGE: ${{ secrets.DOCKER_USERNAME }}/backend
