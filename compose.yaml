@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+    ports:
+      - "7777:5432"
+
+  backend:
+    build: ./backend
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      DB_URL: ${DB_URL}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    environment:
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+    ports:
+      - "3333:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
