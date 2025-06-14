@@ -6,4 +6,4 @@ metadata:
 data:
   DB_URL: jdbc:postgresql://postgresql:5432/sport
   POSTGRES_DB: sport
-  VITE_API_BASE_URL: http://localhost:8080/api
+  VITE_API_BASE_URL: http://sports.local:8088/api
