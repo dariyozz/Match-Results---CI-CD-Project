@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 name: Deploy Fullstack App
 
 on:
@@ -77,4 +76,4 @@ jobs:
 
       - name: Log out of Docker Hub
         run: docker logout
->>>>>>> 7eb5e1b5e4b3304a03b02312ba3616ef09be9eb1
+
