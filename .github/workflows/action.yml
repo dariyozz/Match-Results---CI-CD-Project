@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: Deploy Fullstack App
 
 on:
@@ -38,3 +39,42 @@ jobs:
         context: ./frontend
         push: true
         tags: ${{ env.FRONTEND_IMAGE }}:latest
+=======
+name: Deploy Fullstack App
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  BACKEND_IMAGE: ${{ secrets.DOCKER_USERNAME }}/backend
+  FRONTEND_IMAGE: ${{ secrets.DOCKER_USERNAME }}/frontend
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build and push backend image
+        run: |
+          cd ./backend
+          docker build -t ${{ env.BACKEND_IMAGE }} .
+          docker push ${{ env.BACKEND_IMAGE }}
+          cd ..
+
+      - name: Build and push frontend image
+        run: |
+          cd ./frontend
+          docker build -t ${{ env.FRONTEND_IMAGE }} .
+          docker push ${{ env.FRONTEND_IMAGE }}
+          cd ..
+
+      - name: Log out of Docker Hub
+        run: docker logout
+>>>>>>> 7eb5e1b5e4b3304a03b02312ba3616ef09be9eb1
