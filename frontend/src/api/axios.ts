@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const VITE_API_URL: string = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api"; // Adjust if needed
+const VITE_API_URL: string = "http://sports.local:8088/api/" // Adjust if needed
 
 const api = axios.create({
     baseURL: VITE_API_URL, // Adjust if needed
