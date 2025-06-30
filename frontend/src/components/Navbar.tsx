@@ -14,7 +14,7 @@ const Navbar = () => {
     const isActive = (path: string) => location.pathname.startsWith(path);
 
     return (
-        <nav className="bg-gray-900 text-gray-300 px-6 py-4 shadow-lg">
+        <nav className="bg-blue-900 text-gray-300 px-6 py-4 shadow-lg">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex items-center space-x-8">
                     <Link
